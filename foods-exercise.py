@@ -1,3 +1,5 @@
+import json
+
 def foods_file():
     f = open("foods.txt","r")
     foods = [line for line in f.read().splitlines()[1:] if line.strip()] # Remove blank spaces
@@ -79,10 +81,9 @@ master_list = [food,high_fiber,low_glycemic_index,low_fat]
 food_dictionary = {}
 
 for i in range(len(food)):
-    item = f"foods:{master_list[0][i]}\
-        highfiber:{master_list[1][i]}\
-        low-glycemic:{master_list[2][i]}\
-        lowfat:{master_list[3][i]}"
+    item = f"foods:{master_list[0][i]}, highfiber:{master_list[1][i]}, low-glycemic:{master_list[2][i]}, lowfat:{master_list[3][i]}"
     food_dictionary[i] = item
 
-print(food_dictionary[0])
+food_json = json.dumps(food_dictionary)
+with open("sample.json", "w") as outfile:
+    outfile.write(food_json)
