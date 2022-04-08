@@ -52,6 +52,25 @@ def low_glycemic_index_file():
 
     return GI_list
 
+def low_fat_file():
+    f = open("low-glycemic-index.txt","r")
+    fat_amount = [line for line in f.read().splitlines()[1:] if line.strip()] # Remove blank spaces
+    f.close()
+    low_fat_list = []
+
+    for fat in fat_amount:
+        if len(fat) > 3:
+            fat = ""
+        fat = ''.join('o' if letter == '0' else letter for letter in fat)
+        fat = ''.join('' if letter == ' ' else letter for letter in fat)
+        fat = ''.join('' if letter.isnumeric() else letter for letter in fat)
+        low_fat_list.append(fat.title())
+        if fat == "":
+            low_fat_list.remove(fat)
+
+    return low_fat_list
+
 print(len(high_fiber_file()))
 print(len(foods_file()))
 print(len(low_glycemic_index_file()))
+print(len(low_fat_file()))
