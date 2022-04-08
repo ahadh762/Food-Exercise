@@ -70,7 +70,19 @@ def low_fat_file():
 
     return low_fat_list
 
-print(len(high_fiber_file()))
-print(len(foods_file()))
-print(len(low_glycemic_index_file()))
-print(len(low_fat_file()))
+food = foods_file()
+high_fiber = high_fiber_file()
+low_glycemic_index = low_glycemic_index_file()
+low_fat = low_fat_file()
+
+master_list = [food,high_fiber,low_glycemic_index,low_fat]
+food_dictionary = {}
+
+for i in range(len(food)):
+    item = f"foods:{master_list[0][i]}\
+        highfiber:{master_list[1][i]}\
+        low-glycemic:{master_list[2][i]}\
+        lowfat:{master_list[3][i]}"
+    food_dictionary[i] = item
+
+print(food_dictionary[0])
