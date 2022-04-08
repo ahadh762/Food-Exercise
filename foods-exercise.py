@@ -63,7 +63,7 @@ def low_fat_file():
     for fat in fat_amount:
         if len(fat) > 3:
             fat = ""
-        fat = ''.join('o' if letter == '0' else letter for letter in fat)
+
         fat = ''.join('' if letter == ' ' else letter for letter in fat)
         fat = ''.join('' if letter.isnumeric() else letter for letter in fat)
         low_fat_list.append(fat.title())
@@ -94,5 +94,27 @@ with open('sample.json') as json_file:
 
     # Print the data in dictionary
     for i in range(len(food)):
-        json_dict[i] = (data[str(i)])
+        json_dict[i] = data[str(i)]
 
+
+low_fat_count = 0
+high_fiber_count = 0
+low_glycemic_count = 0
+
+
+for i in range (len(json_dict)):
+    if "Yes" in json_dict[i].split(',')[3]:
+        low_fat_count+=1
+    if "Yes" in json_dict[i].split(',')[1]:
+        high_fiber_count+=1
+    if "Yes" in json_dict[i].split(',')[2]:
+        low_glycemic_count+=1
+
+
+print(f"Low fat count: {low_fat_count}")
+print(f"High fiber count: {high_fiber_count}")
+print(f"Low glycemic count: {low_glycemic_count}")
+print()
+print(f"Low fat Percentage: {round(low_fat_count/len(json_dict)*100,2)}%")
+print(f"High fiber Percentage: {round(high_fiber_count/len(json_dict)*100,2)}%")
+print(f"Low glycemic Percentage: {round(low_glycemic_count/len(json_dict)*100,2)}%")
