@@ -87,3 +87,12 @@ for i in range(len(food)):
 food_json = json.dumps(food_dictionary)
 with open("sample.json", "w") as outfile:
     outfile.write(food_json)
+
+json_dict = {}
+with open('sample.json') as json_file:
+    data = json.load(json_file)
+
+    # Print the data in dictionary
+    for i in range(len(food)):
+        json_dict[i] = (data[str(i)])
+
